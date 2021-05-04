@@ -1,0 +1,39 @@
+<p></p>
+<div class="title center">
+  <h1>Listado de Jugadores</h1>
+  <div class="my-2 text-left">
+      <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]="['/usuario/form1']">Agregar Jugador</button>
+  </div>
+      <div *ngIf="usuarios?.length == 0" class="alert alert-info">
+        No hay registros en la base de datos!
+      </div>
+</div>
+      <div class="col-12 col-md-6 col-xl-3">
+        <div *ngIf="usuarios?.length>0">
+          <tr *ngFor="let usuario of usuarios">
+            <div class="row">
+              <div class="col-12">
+              <div class="dsc-card">
+                <td *ngIf="authService.hasRole('ROLE_USER')"><img [routerLink]="['/usuario/detalleu', usuario.id]" *ngIf="usuario?.foto"
+                     src="http://localhost:8080/api/uploads/img/{{usuario.foto}}" alt="{{usuario.foto}}" class="dsc-card_img">
+
+                    <img [routerLink]="['/usuario/detalleu', usuario.id]" *ngIf="!usuario?.foto"
+                      src="http://localhost:8080/images/user.png" alt="sin foto" class="dsc-card_img">
+                </td>
+                  <div class="dsc-card_info">
+                    <h2>{{usuario.nombre}} {{usuario.apellido}}</h2>
+                    <h4>{{usuario.equipo.nombre}}</h4>
+                    <h4>{{usuario.email}}</h4>
+                    <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+                      <button type="button" name="editar" [routerLink]="['/usuario/form1', usuario.id]" class="btn btn-primary btn-sm">Editar</button>
+                    </td>
+                    <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+                      <button type="button" name="eliminar" (click)='delete(usuario)' class="btn btn-danger btn-sm">Eliminar</button>
+                    </td>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tr>
+        </div>
+      </div>

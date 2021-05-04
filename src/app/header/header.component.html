@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">{{title}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Inicio</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/equipos']">Equipos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/usuario">Jugadores</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-raight">
+          <li *ngIf="!authService.isAuthenticated()" class="nav-item"><a [routerLink]="['/login']" class="btn btn-outline-primary">Iniciar Sesión</a><a class="btn btn-outline-primary">Registrar</a></li>
+        <li *ngIf="authService.isAuthenticated()" class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            {{authService.usuario.username}}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <button (click)="logout()" class="dropdown-item" type="submit">Cerrar Sesión</button>
+          </ul>
+        </li>
+      </ul>
+    </div>
+</nav>

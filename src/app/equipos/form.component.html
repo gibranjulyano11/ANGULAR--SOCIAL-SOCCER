@@ -1,0 +1,64 @@
+
+
+<div class="card bg-dark text-white">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+
+  <form #equipoForm="ngForm">
+    <div class="form-group row">
+      <label for="nombre" class="col-form-label col-sm-2">Nombre:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="equipo.nombre" name="nombre" required #nombre="ngModel">
+        <div class="alert alert-danger" *ngIf="nombre.invalid &&(nombre.dirty || nombre.touched)">
+          <div *ngIf="nombre.errors.required">
+            Ingrese el nombre del equipo
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <div class="form group row">
+      <label for="categoria" class="col-form-label col-sm-2">Categoría:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="equipo.categoria" name="categoria" required #categoria="ngModel">
+        <div class="alert alert-danger" *ngIf="categoria.invalid &&(categoria.dirty || categoria.touched)">
+          <div *ngIf="categoria.errors.required">
+            Ingrese la categoría del equipo
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <div class="form group row">
+      <label for="dirigente" class="col-form-label col-sm-2">Dirigente:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="equipo.dirigente" name="dirigente" required dirigente #dirigente="ngModel">
+        <div class="alert alert-danger" *ngIf="dirigente.invalid && (dirigente.dirty || dirigente.touched)">
+          <div *ngIf="dirigente.errors.required">
+            Ingrese el nombre del dirigente
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <div class="form group row">
+      <label for="createAt" class="col-form-label col-sm-2">Fecha:</label>
+      <div class="col-sm-6">
+        <input matInput [matDatepicker]="picker" class="form-control" [(ngModel)]="equipo.createAt" name="createAt" style="display:inline; width:300px">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!equipo.id else elseBlock" [disabled]="!equipoForm.form.valid">Crear</button>
+        <ng-template #elseBlock>
+          <button class="btn btn-primary" role="button" (click)='update()'[routerLink]="['/equipos']" [disabled]="!equipoForm.form.valid">Editar</button>
+        </ng-template>
+      </div>
+    </div>
+  </form>
+
+  </div>
+</div>

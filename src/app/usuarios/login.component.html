@@ -1,0 +1,26 @@
+
+<form class="login-form">
+  <p></p>
+  <p></p>
+  <p></p>
+  <h1 class="tittle text-center ">{{titulo}}</h1>
+  <p class="login-text">
+  <span class="fa-stack fa-lg">
+    <i class="fas fa-futbol"></i>
+    <i class="fa fa-lock fa-stack-1x"></i>
+  </span>
+</p>
+  <div class="form-group">
+  <input [(ngModel)]="usuario.username" type="text" class="login-username"
+  name="username" id="username" placeholder="Nombre de Usuario" autofocus required>
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="usuario.password" type="password" class="login-password"
+    name="password" id="password" required="true" placeholder="Contraseña" required>
+  </div>
+  <div class="form-group">
+    <input (click)='login()' type="submit" class="btn btn-lg login-submit"  value="Iniciar Sesión"/>
+  </div>
+</form>
+<div class="underlay-photo"></div>
+<div class="underlay-black"></div>

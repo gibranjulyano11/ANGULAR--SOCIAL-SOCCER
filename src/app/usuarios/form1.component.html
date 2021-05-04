@@ -1,0 +1,107 @@
+<div class="card bg-dark text-white">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+
+  <form #usuarioForm="ngForm">
+    <div class="form-group row">
+      <label for="nombre" class="col-form-label col-sm-2">Nombre:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name="nombre" required #nombre="ngModel">
+        <div class="alert alert-danger" *ngIf="nombre.invalid &&(nombre.dirty || nombre.touched)">
+          <div *ngIf="nombre.errors.required">
+            Ingrese su nombre
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <div class="form group row">
+      <label for="apellido" class="col-form-label col-sm-2">Apellido:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="usuario.apellido" name="apellido" required #apellido="ngModel">
+        <div class="alert alert-danger" *ngIf="apellido.invalid &&(apellido.dirty || apellido.touched)">
+          <div *ngIf="apellido.errors.required">
+            Ingrese su apellido
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <div class="form group row">
+      <label for="username" class="col-form-label col-sm-2">Nombre de Usuario:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="usuario.username" name="username" required #username="ngModel">
+        <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+          <div *ngIf="username.errors.required">
+            Ingrese el nombre de usuario
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <div class="form group row">
+      <label for="password" class="col-form-label col-sm-2">Contraseña:</label>
+      <div class="col-sm-6">
+        <input type="password" class="form-control" [(ngModel)]="usuario.password" name="password" required #password="ngModel">
+        <div class="alert alert-danger" *ngIf="password.invalid &&(password.dirty || password.touched)">
+          <div *ngIf="password.errors.required">
+            Ingrese una contraseña
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <div class="form group row">
+      <label for="email" class="col-form-label col-sm-2">Email:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="usuario.email" name="email" required #email="ngModel">
+        <div class="alert alert-danger" *ngIf="email.invalid &&(email.dirty || email.touched)">
+          <div *ngIf="email.errors.required">
+            Ingrese su correo electrónico
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <div class="form group row">
+      <label for="dni" class="col-form-label col-sm-2">Número de Cédula:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="usuario.dni" name="dni" required #dni="ngModel">
+        <div class="alert alert-danger" *ngIf="dni.invalid &&(dni.dirty || dni.touched)">
+          <div *ngIf="dni.errors.required">
+            Ingrese su cédula
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <div class="form group row">
+      <label for="createAt" class="col-form-label col-sm-2">Fecha:</label>
+      <div class="col-sm-6">
+        <input matInput [matDatepicker]="picker" class="form-control" [(ngModel)]="usuario.createAt" name="createAt" style="display:inline; width:300px">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </div>
+    <p></p>
+    <div class="form group row">
+      <label for="equipo" class="col-form-label col-sm-2">Equipo:</label>
+      <div class="col-sm-6">
+        <select [compareWith]="compararEquipo" class="form-control" [(ngModel)]="usuario.equipo" name="equipo" style="width:500px">
+          <option [ngValue]="undefined">--- Seleccione un Equipo ---</option>
+          <option *ngFor="let equipo of equipos" [ngValue]="equipo">{{equipo.nombre}}</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <button class="btn btn-primary" role="button" (click)='create()' [routerLink]="['/usuario']" *ngIf="!usuario.id else elseBlock" [disabled]="!usuarioForm.form.valid">Crear</button>
+        <ng-template #elseBlock>
+          <button class="btn btn-primary" role="button" (click)='update()'[routerLink]="['/usuario']" [disabled]="!usuarioForm.form.valid">Editar</button>
+        </ng-template>
+      </div>
+    </div>
+
+
+  </div>
