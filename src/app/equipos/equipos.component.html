@@ -23,6 +23,7 @@
           <th *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
         </tr>
       </thead>
+      
       <tbody>
         <tr *ngFor="let equipo of equipos">
           <td *ngIf="authService.hasRole('ROLE_USER')"><img (click)="abrirModal(equipo)" *ngIf="equipo?.foto"

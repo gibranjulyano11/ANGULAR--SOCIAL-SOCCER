@@ -1,39 +1,72 @@
-<p></p>
+<detalleu-usuario *ngIf="usuarioSeleccionado" [usuario] = "usuarioSeleccionado"></detalleu-usuario>
 <div class="title center">
   <h1>Listado de Jugadores</h1>
   <div class="my-2 text-left">
-      <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]="['/usuario/form1']">Agregar Jugador</button>
+      <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded btn-primary center" type="button" [routerLink]="['/usuario/form1']">Agregar Jugador</button>
   </div>
       <div *ngIf="usuarios?.length == 0" class="alert alert-info">
         No hay registros en la base de datos!
       </div>
 </div>
-      <div class="col-12 col-md-6 col-xl-3">
-        <div *ngIf="usuarios?.length>0">
-          <tr *ngFor="let usuario of usuarios">
-            <div class="row">
-              <div class="col-12">
-              <div class="dsc-card">
-                <td *ngIf="authService.hasRole('ROLE_USER')"><img [routerLink]="['/usuario/detalleu', usuario.id]" *ngIf="usuario?.foto"
-                     src="http://localhost:8080/api/uploads/img/{{usuario.foto}}" alt="{{usuario.foto}}" class="dsc-card_img">
 
-                    <img [routerLink]="['/usuario/detalleu', usuario.id]" *ngIf="!usuario?.foto"
-                      src="http://localhost:8080/images/user.png" alt="sin foto" class="dsc-card_img">
+        <div *ngIf="usuarios?.length>0">
+          <div class="container" id="main-container">
+            <div class="row">
+              <div *ngFor="let usuario of usuarios" class="col-md-6 col-xl-3">
+              <div class="dsc-card">
+                <td *ngIf="authService.hasRole('ROLE_USER')"><img (click)="abrirModal1(usuario)" *ngIf="usuario?.foto"
+                  src="http://localhost:8080/api/uploads/img/{{usuario.foto}}" alt="{{usuario.foto}}" class="dsc-card_img">
+
+                 <img (click)="abrirModal1(usuario)" *ngIf="!usuario?.foto"
+                   src="http://localhost:8080/images/user.png" alt="sin foto" class="dsc-card_img">
                 </td>
                   <div class="dsc-card_info">
-                    <h2>{{usuario.nombre}} {{usuario.apellido}}</h2>
-                    <h4>{{usuario.equipo.nombre}}</h4>
+                    <h3 class="card-title mb-0"><b>{{usuario.nombre}} {{usuario.apellido}}</b></h3>
+                    <h3 class="card-title mb-0">{{usuario.equipo.nombre}}</h3>
                     <h4>{{usuario.email}}</h4>
-                    <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+                    <text-align *ngIf="authService.hasRole('ROLE_ADMIN')">
                       <button type="button" name="editar" [routerLink]="['/usuario/form1', usuario.id]" class="btn btn-primary btn-sm">Editar</button>
-                    </td>
-                    <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+                    </text-align>
+                    <text-right *ngIf="authService.hasRole('ROLE_ADMIN')">
                       <button type="button" name="eliminar" (click)='delete(usuario)' class="btn btn-danger btn-sm">Eliminar</button>
-                    </td>
+                    </text-right>
                   </div>
                 </div>
               </div>
             </div>
-          </tr>
         </div>
       </div>
+
+
+    <!-- <div class="container" id="main-container">
+    <div class="row">
+      <div *ngFor="let usuario of usuarios" class="col-md-6 col-xl-3">
+         <div class="card m-b-30">
+            <div class="card-body row">
+               <div class="col-6">
+                  <a href=""><img src="{{employee?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
+               </div>
+               <div class="col-6 card-title align-self-center mb-0">
+                  <h5>{{employee?.name}}</h5>
+                  <p class="m-0">{{employee?.jobTitle}}</p>
+               </div>
+            </div>
+            <ul class="list-group list-group-flush">
+               <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{employee?.email}}</li>
+               <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone : {{employee?.phone}}</li>
+            </ul>
+            <div class="card-body">
+               <div class="float-right btn-group btn-group-sm">
+                  <a (click)="onOpenModal(employee, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                  <a (click)="onOpenModal(employee, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+               </div>
+            </div>
+         </div>
+      </div>
+    </div> -->
+    
+    
+    
+   
+
+    

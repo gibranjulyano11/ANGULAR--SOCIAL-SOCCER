@@ -1,21 +1,33 @@
-<div class="card bg-ligth">
-  <div class="card-header list-group-item active">{{titulo}}</div>
-  <div class="card-body">
-    <h4 class="card-title">
-      <a [routerLink]="['/usuario']" class="btn btn-light btn-xs">&laquo; volver</a>
-    </h4>
+<div class="abrir-modal animacion fadeIn" *ngIf="modalService.modal">
+  <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-body">
+          
+          <button (click)="cerrarModal1()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
 
-        <tr *ngFor="let usuarios of usuario">
-          <div class="card border-info mb-4" style="max-width: 500px;">
-            <ul class="list-group my-2">
-              <li class="list-group-item list-group-item-primary">Datos del Jugador</li>
-                <li class="list-group-item active">{{usuario.nombre}} {{usuario.apellido}}</li>
-                <li class="list-group-item"></li>
-                <li class="list-group-item"></li>
-                <li class="list-group-item"></li>
-              </ul>
+          <section class="seccion-perfil-usuario">
+            <div class="perfil-usuario-header">
+              <div class="perfil-usuario-portada">
+                  <div class="perfil-usuario-avatar">
+                  <img *ngIf="usuario?.foto" src="http://localhost:8080/api/uploads/img/{{usuario.foto}}" alt="img-avatar">
+                </div>
+              </div>
             </div>
-
+            
+        
+          <div class="perfil-usuario-body">
+            <div class="perfil-usuario-bio">
+              <div class="perfil-usuario-footer">
+                <ul *ngIf="usuario" class="lista-datos">
+                    <li><i class="icono fas fa-user-shield">Nombre</i>{{usuario.nombre}} {{usuario.apellido}}</li>
+                    <li><i class="icono fas fa-futbol">Equipo</i>{{usuario.equipo.nombre}}</li>
+                    <li><i class="icono fas fa-phone-alt">Celular</i>{{usuario.telefono}}</li>
+                    <li><i class="icono fas fa-tshirt">Dorsal</i>{{usuario.dorsal}}</li> 
+                </ul>
                 <div class="input-group mb-3" *ngIf="authService.hasRole('ROLE_ADMIN')">
                   <div class="custom-file">
                     <input (change)="seleccionarFoto($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
@@ -31,7 +43,17 @@
                     {{progreso}}%
                   </div>
                 </div>
-            <div class="col-sm">
-              <img *ngIf="usuario?.foto" src="http://localhost:8080/api/uploads/img/{{usuario.foto}}" alt="{{usuario.foto}}" class="img-thumbnail rounded">
+              </div>
             </div>
-          </tr>
+          </div>
+        
+      </section>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+          
+<!-- cambios -->
+

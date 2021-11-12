@@ -1,0 +1,8 @@
+
+.navbar{
+    font-size: medium;
+    font-style: normal;
+    text-transform: uppercase;
+    transition: all 0.5s ease-in-out 0s;
+    margin-bottom: 0px;
+}

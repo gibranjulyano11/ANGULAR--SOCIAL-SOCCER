@@ -1,26 +1,39 @@
+<div class="container-fluid ps-md-0">
+  <div class="row g-0">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h1 class="login-heading mb-4">Bienvenido a Social Soccer</h1>
 
-<form class="login-form">
-  <p></p>
-  <p></p>
-  <p></p>
-  <h1 class="tittle text-center ">{{titulo}}</h1>
-  <p class="login-text">
-  <span class="fa-stack fa-lg">
-    <i class="fas fa-futbol"></i>
-    <i class="fa fa-lock fa-stack-1x"></i>
-  </span>
-</p>
-  <div class="form-group">
-  <input [(ngModel)]="usuario.username" type="text" class="login-username"
-  name="username" id="username" placeholder="Nombre de Usuario" autofocus required>
+              <!-- Sign In Form -->
+              <form>
+                <div class="form-floating mb-3">
+                  <input [(ngModel)]="usuario.username" type="text" class="form-control" name="username" id="username" placeholder="usuario" autofocus required>
+                  <label for="floatingInput">Nombre de Usuario</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input [(ngModel)]="usuario.password" type="password" class="form-control" name="password" id="password" required="true" placeholder="Password" required>
+                  <label for="floatingPassword">Contraseña</label>
+                </div>
+
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+                  <label class="form-check-label" for="rememberPasswordCheck">
+                    recordar contraseña
+                  </label>
+                </div>
+
+                <div class="d-grid">
+                  <button (click)='login()' class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Iniciar Sesión</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <input [(ngModel)]="usuario.password" type="password" class="login-password"
-    name="password" id="password" required="true" placeholder="Contraseña" required>
-  </div>
-  <div class="form-group">
-    <input (click)='login()' type="submit" class="btn btn-lg login-submit"  value="Iniciar Sesión"/>
-  </div>
-</form>
-<div class="underlay-photo"></div>
-<div class="underlay-black"></div>
+</div>

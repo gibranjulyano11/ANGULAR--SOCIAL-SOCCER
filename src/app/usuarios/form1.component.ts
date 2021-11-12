@@ -7,7 +7,8 @@ import {Equipo} from '../equipos/equipo';
 
 @Component({
   selector: 'app-form1',
-  templateUrl: './form1.component.html'
+  templateUrl: './form1.component.html',
+  styleUrls: ['./form1.component.css']
 })
 export class Form1Component implements OnInit {
 

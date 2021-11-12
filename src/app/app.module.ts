@@ -30,7 +30,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SliderComponent } from './slider/slider.component';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
-import { CardUserComponent } from './usuarios/cards/card-user/card-user.component';
+import {CardUserComponent} from './usuarios/cards/card-user/card-user.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -41,7 +41,7 @@ const routes: Routes = [
   {path: 'equipos/form/:id', component: FormComponent, canActivate:[AuthGuard, RoleGuard], data:{role: 'ROLE_ADMIN'}},
   {path: 'usuario', component: UsuarioComponent},
   {path: 'usuario/detalleu/:usuarioId', component: DetalleuComponent, canActivate:[AuthGuard, RoleGuard], data:{role: 'ROLE_USER'}},
-  //{path: 'usuario/page/:page', component: UsuarioComponent},
+  {path: 'usuario/page/:page', component: UsuarioComponent},
   {path: 'usuario/form1', component: Form1Component, canActivate:[AuthGuard, RoleGuard], data:{role: 'ROLE_ADMIN'}},
   {path: 'usuario/form1/:id', component: Form1Component, canActivate:[AuthGuard, RoleGuard], data:{role: 'ROLE_ADMIN'}},
   {path: 'login', component: LoginComponent},
@@ -69,6 +69,7 @@ const routes: Routes = [
     SliderComponent,
     CardUserComponent,
   ],
+  
   imports: [
     BrowserModule,
     HttpClientModule,

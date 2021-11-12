@@ -5,7 +5,9 @@ import swal from 'sweetalert2';
 import { tap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import {AuthService} from '../usuarios/auth.service';
-import { ModalService } from '../equipos/detalle/modal.service';
+import { ModalService } from './detalleu/modal1.service';
+import { IUclm } from './cards/card-user/ICard-user';
+import { CardUserComponent } from './cards/card-user/card-user.component';
 //import {URL_BACKEND} from '../config/config';
 
 @Component({
@@ -14,6 +16,8 @@ import { ModalService } from '../equipos/detalle/modal.service';
   styleUrls: ['./usuario.component.scss']
 })
 export class UsuarioComponent implements OnInit {
+
+  public sizes: IUclm = { xs: 12};
 
   usuarios: Usuario[];
   paginador: any;
@@ -55,8 +59,6 @@ export class UsuarioComponent implements OnInit {
     })
   }
 
-
-
   delete(usuario: Usuario): void {
     swal.fire({
   title: 'Estas seguro?',
@@ -73,8 +75,8 @@ export class UsuarioComponent implements OnInit {
       response => {
           this.usuarios = this.usuarios.filter(cli => cli !== usuario)
         swal.fire(
-          'Equipo Eliminado!',
-          `Equipo ${usuario.nombre} eliminado con éxito.`,
+          'Usuario Eliminado!',
+          `Usuario ${usuario.nombre} eliminado con éxito.`,
           'success'
         )
       }
@@ -83,9 +85,9 @@ export class UsuarioComponent implements OnInit {
 });
 }
 
-abrirModal(usuario: Usuario){
+abrirModal1(usuario: Usuario){
   this.usuarioSeleccionado = usuario;
-  this.modalService.abrirModal();
+  this.modalService.abrirModal1();
 }
 
 }

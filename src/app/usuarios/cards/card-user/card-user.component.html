@@ -1,1 +1,32 @@
-
+<app-card-user [sizes]="{xs: 12, md: 6}"></app-card-user>
+<div class="container-fluid">
+    <div class="cols-xl-12 col-md-12 mb-4">
+          <div *ngIf="usuarios?.length>0">
+            <td *ngFor="let usuario of usuarios">
+              <div class="row">
+                <div class="cols-16">
+                <div class="dsc-card">
+                  <td *ngIf="authService.hasRole('ROLE_USER')"><img (click)="abrirModal1(usuario)" *ngIf="usuario?.foto"
+                    src="http://localhost:8080/api/uploads/img/{{usuario.foto}}" alt="{{usuario.foto}}" class="dsc-card_img">
+  
+                   <img (click)="abrirModal1(usuario)" *ngIf="!usuario?.foto"
+                     src="http://localhost:8080/images/user.png" alt="sin foto" class="dsc-card_img">
+               </td>
+                    <div class="dsc-card_info">
+                      <h3 class="card-title mb-0"><b>{{usuario.nombre}} {{usuario.apellido}}</b></h3>
+                      <h3 class="card-title mb-0">{{usuario.equipo.nombre}}</h3>
+                      <h4>{{usuario.email}}</h4>
+                      <text-align *ngIf="authService.hasRole('ROLE_ADMIN')">
+                        <button type="button" name="editar" [routerLink]="['/usuario/form1', usuario.id]" class="btn btn-primary btn-sm">Editar</button>
+                      </text-align>
+                      <text-right *ngIf="authService.hasRole('ROLE_ADMIN')">
+                        <button type="button" name="eliminar" (click)='delete(usuario)' class="btn btn-danger btn-sm">Eliminar</button>
+                      </text-right>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </div>
+        </div>
+      </div>

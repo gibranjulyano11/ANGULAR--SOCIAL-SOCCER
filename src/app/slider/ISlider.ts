@@ -25,7 +25,7 @@ export const SliderData: ISlider[] = [
   {
     id:1,
     title: {
-      first: 'Social-',
+      first: 'Social',
       second: 'Soccer'
     },
     subtitle: '',
@@ -35,7 +35,7 @@ export const SliderData: ISlider[] = [
   {
     id:1,
     title: {
-      first: 'Social-',
+      first: 'Social',
       second: 'Soccer'
     },
     subtitle: '',

@@ -4,13 +4,13 @@ import  {UsuarioService} from '../usuario.service';
 import swal from 'sweetalert2';
 import {HttpEventType} from '@angular/common/http';
 import {AuthService} from '../../usuarios/auth.service';
-
+import { ModalService } from './modal1.service';
 
 
 @Component({
   selector: 'detalleu-usuario',
   templateUrl: './detalleu.component.html',
-  //styleUrls: ['./detalleu.component.css']
+  styleUrls: ['./detalleu.component.css']
 })
 export class DetalleuComponent implements OnInit {
 
@@ -22,6 +22,7 @@ export class DetalleuComponent implements OnInit {
 
   constructor(public usuarioService: UsuarioService,
     public authService: AuthService,
+    public modalService: ModalService
     ) { }
 
   ngOnInit() {
@@ -48,13 +49,17 @@ export class DetalleuComponent implements OnInit {
         this.progreso = Math.round((event.loaded/event.total)*100)
       }else if(event.type === HttpEventType.Response){
         let response:any = event.body;
-        this.usuario = response.equipo as Usuario;
+        this.usuario = response.usuario as Usuario;
         swal.fire('La foto se ha cargado con éxito!', response.mensaje, 'success');
       }
       //this.equipo = equipo;
+      this.modalService.notificarUpload.emit(this.usuario);
     });
     }
   }
-
+  cerrarModal1(){
+    this.modalService.cerrarModal1();
+    this.fotoSeleccionada = null;
+  }
 
 }

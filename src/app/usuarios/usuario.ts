@@ -10,5 +10,7 @@ export class Usuario {
   foto: String;
   createAt: string;
   equipo: Equipo;
+  telefono: String;
+  dorsal: String;
   roles: String[] = [];
 }

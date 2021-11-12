@@ -5,7 +5,8 @@ import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent{
  title: string = 'Social Soccer'
